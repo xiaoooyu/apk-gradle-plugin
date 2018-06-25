@@ -1,0 +1,19 @@
+plugins {
+    id 'groovy'
+    id 'java-gradle-plugin'
+}
+
+group 'xiaoyu.github.com'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile localGroovy()
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.2.0'
+    testRuntime group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.2.0'
+}
