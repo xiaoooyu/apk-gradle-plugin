@@ -1,8 +1,5 @@
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
-import java.nio.CharBuffer
-import java.nio.charset.Charset
-import java.nio.charset.CharsetDecoder
 
 import static org.junit.jupiter.api.Assertions.assertEquals
 
@@ -71,9 +68,21 @@ class AndroidManifestReaderTest {
 //        print str
 
         String theme = "theme"
+        bb = ByteBuffer.allocate(theme.length() * 2 + 4).order(ByteOrder.LITTLE_ENDIAN)
         def bb2 = ByteBuffer.allocate(theme.length() * 2).order(ByteOrder.LITTLE_ENDIAN)
         def cb2 = bb2.asCharBuffer()
         cb2.put(theme)
-        println bb2.array()
+
+        bb.putShort(theme.length().shortValue())
+        bb.put(bb2.array())
+        bb.putShort((short)0)
+        println bb.array()
+    }
+
+    @Test
+    void test3() {
+        (0..<0).each {
+            println('a')
+        }
     }
 }
