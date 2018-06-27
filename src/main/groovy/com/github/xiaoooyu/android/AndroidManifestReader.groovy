@@ -1,3 +1,5 @@
+package com.github.xiaoooyu.android
+
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 
@@ -17,13 +19,13 @@ class AndroidManifestReader extends AndroidManifestAwareness {
     }
 
     void read() {
-        if (MAGIC_NUMBER != readInt()) {
+        if (AndroidManifestAwareness.MAGIC_NUMBER != readInt()) {
             return
         }
 
         totalSize = readInt()
 
-        if (STRING_CHUNK == readInt()) {
+        if (AndroidManifestAwareness.STRING_CHUNK == readInt()) {
             stringChunkSize = readInt()
             stringCount = readInt()          // String Count
             styleCount = readInt()           // Style Count
@@ -79,7 +81,7 @@ class AndroidManifestReader extends AndroidManifestAwareness {
         }
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream(4 + getInputStream().available())
-        outputStream.write(ByteBuffer.allocate(4).order(ByteOrder.LITTLE_ENDIAN).putInt(RESOURCE_ID_CHUNK).array())
+        outputStream.write(ByteBuffer.allocate(4).order(ByteOrder.LITTLE_ENDIAN).putInt(AndroidManifestAwareness.RESOURCE_ID_CHUNK).array())
 
         byte[] buff = new byte[1024]
         while(getInputStream().available() > 0) {

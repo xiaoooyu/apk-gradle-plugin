@@ -1,3 +1,5 @@
+package com.github.xiaoooyu.android
+
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 
@@ -12,7 +14,7 @@ class AndroidManifestReaderTest {
 
     @BeforeEach
     void setup() {
-        String testFilePath = getClass().getResource("AndroidManifest.xml").file
+        String testFilePath = getClass().getClassLoader().getResource("AndroidManifest.xml").file
         reader = new AndroidManifestReader(testFilePath)
     }
 

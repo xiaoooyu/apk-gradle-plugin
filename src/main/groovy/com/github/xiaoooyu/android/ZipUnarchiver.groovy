@@ -1,3 +1,5 @@
+package com.github.xiaoooyu.android
+
 import java.nio.file.FileSystems
 import java.nio.file.FileVisitResult
 import java.nio.file.Files

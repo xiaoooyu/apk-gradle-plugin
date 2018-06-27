@@ -1,3 +1,5 @@
+package com.github.xiaoooyu.android
+
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
@@ -11,8 +13,8 @@ class AndroidManifestWriterTest {
 
     @BeforeEach
     void setup() {
-        String testFilePath = getClass().getResource("AndroidManifest.xml").file
-        String testFilePath2 = getClass().getResource("AndroidManifest_xiaomi.xml").file
+        String testFilePath = getClass().getClassLoader().getResource("AndroidManifest.xml").file
+        String testFilePath2 = getClass().getClassLoader().getResource("AndroidManifest_xiaomi.xml").file
 
         reader = new AndroidManifestReader(testFilePath)
         reader2 = new AndroidManifestReader(testFilePath2)

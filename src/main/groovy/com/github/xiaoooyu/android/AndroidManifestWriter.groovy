@@ -1,3 +1,5 @@
+package com.github.xiaoooyu.android
+
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 
@@ -20,7 +22,7 @@ class AndroidManifestWriter extends AndroidManifestAwareness {
 
         byte[] stringChunk = buildStringChunk()
 
-        writeInt(MAGIC_NUMBER, getOutputStream())
+        writeInt(AndroidManifestAwareness.MAGIC_NUMBER, getOutputStream())
         totalSize = 8 + stringChunkSize + others.length
         writeInt(totalSize, getOutputStream())
         write(stringChunk, getOutputStream())
@@ -51,7 +53,7 @@ class AndroidManifestWriter extends AndroidManifestAwareness {
 
         def chunkBuffer = ByteBuffer.allocate(stringChunkSize).order(ByteOrder.LITTLE_ENDIAN)
         chunkBuffer.with {
-            putInt(STRING_CHUNK)
+            putInt(AndroidManifestAwareness.STRING_CHUNK)
             putInt(stringChunkSize)
             putInt(stringCount)
             putInt(styleCount)
