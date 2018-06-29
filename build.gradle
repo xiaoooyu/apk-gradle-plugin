@@ -12,10 +12,11 @@ buildscript {
 plugins {
     id 'groovy'
     id 'java'
+    id 'java-gradle-plugin'
 }
 
-group 'xiaoyu.github.com'
-version '1.0-SNAPSHOT'
+group 'com.github.xiaoooyu'
+version '1.0.0'
 
 apply plugin: 'kotlin'
 
