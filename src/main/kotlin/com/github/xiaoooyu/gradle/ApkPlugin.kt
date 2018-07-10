@@ -14,6 +14,5 @@ class ApkPlugin: Plugin<Project> {
                 action.env = extension
             }
         })
-
     }
 }
