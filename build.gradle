@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = '1.2.31'
+    ext.kotlin_version = '1.2.51'
 
     repositories {
         mavenCentral()
@@ -16,8 +16,9 @@ plugins {
 }
 
 group 'com.github.xiaoooyu'
-version '1.0.0'
+version '1.1.1'
 
+apply plugin: 'maven'
 apply plugin: 'kotlin'
 
 sourceCompatibility = 1.8
@@ -40,3 +41,31 @@ compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
 
+
+// install to local repository
+task installLocal(type: Upload) {
+    description "Installs the artifacts to the local Maven repository."
+    configuration = configurations['archives']
+    repositories.mavenDeployer {
+        repository url: repositories.mavenLocal().url
+        pom.project {
+            groupId 'com.github.xiaoooyu'
+            artifactId 'apk-gradle-plugin'
+            version version
+        }
+    }
+}
+
+// upload to remote repository
+uploadArchives {
+    repositories.mavenDeployer {
+        repository(url: "http://maven.teambition.net:8081/artifactory/android") {
+            authentication(userName: System.getenv("ARTIFACTORY_USERNAME"), password: System.getenv("ARTIFACTORY_PASSWORD"))
+        }
+        pom.project {
+            groupId 'com.github.xiaoooyu'
+            artifactId 'apk-gradle-plugin'
+            version version
+        }
+    }
+}
