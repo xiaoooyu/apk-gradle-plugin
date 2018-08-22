@@ -11,12 +11,15 @@ buildscript {
 apply plugin: 'apk-gradle-plugin'
 
 apkExtension {
-
+    keyStore = "/Users/duguodong/git/teambition-android/app/keystore/keystore.jks"
+    storePass "$System.env.RELEASE_STORE_PASSWORD"
+    keyAlias "$System.env.RELEASE_KEY_ALIAS"
+    keyPass "$System.env.RELEASE_KEY_PASSWORD"
 }
 
-createChannelWorks {
+channelWork {
     apks = fileTree("test") {
         include "*.apk"
     }
-    channels = ["A", "B"]
+    channels = ["channelA", "channelB"]
 }
